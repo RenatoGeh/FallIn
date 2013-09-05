@@ -12,6 +12,7 @@ int main() {
 	
 	ugdk::action::Scene *scene = new ugdk::action::Scene;
 	amb::DrawableImage di("resources/Lydia.png");
+        di.setTile(2, 4);
 	
 	scene->set_render_function([&di](const ugdk::graphic::Geometry& geo, const ugdk::graphic::VisualEffect& eff){ di.Draw(geo, eff); });
 	

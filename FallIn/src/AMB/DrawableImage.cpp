@@ -10,6 +10,8 @@ namespace amb {
 
 	DrawableImage::DrawableImage(Texture* texture, const Vector2D& size) : texture_(texture), drawable_(texture_, size), deletesTexture_(false) {}
 
+        DrawableImage::DrawableImage(const DrawableImage& other) : texture_(other.texture_), drawable_(other.drawable_), deletesTexture_(false) {}
+        
 	DrawableImage::~DrawableImage() {
 		if(deletesTexture_)
 			delete texture_;
@@ -18,6 +20,6 @@ namespace amb {
 	DrawableImage& DrawableImage::operator =(const DrawableImage& other) {
 		texture_ = other.texture_;
 		drawable_ = other.drawable_;
-		deletesTexture_ = true;
+		deletesTexture_ = false;
 	}
 } //namespace amb

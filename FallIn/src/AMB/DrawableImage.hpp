@@ -7,18 +7,16 @@
 #include <ugdk/graphic/drawable.h>
 #include <ugdk/graphic/drawable/texturedrectangle.h>
 #include <ugdk/graphic/texture.h>
+#include "Body.hpp"
 #include <string>
-const int _tileSize = 64;
 namespace {
 	using ugdk::graphic::Texture;
 	using ugdk::math::Vector2D;
-	using ugdk::math::Integer2D;
 	using ugdk::graphic::Geometry;
 }
 
 namespace amb {
-
-	class DrawableImage : public ugdk::action::Entity, public ugdk::graphic::Drawable {
+	class DrawableImage : public Body {
 	public:
 		DrawableImage(const std::string&);
 		DrawableImage(const std::string&, const Vector2D&);
@@ -31,13 +29,14 @@ namespace amb {
 
 		void Update(double) {}
 
-		void Draw(const Geometry& geo, const ugdk::graphic::VisualEffect& eff) const { drawable_.Draw(geo * Geometry(position_ * _tileSize), eff); };
-		const Vector2D& size() const { return drawable_.size(); };
+		void Draw(const Geometry& geo, const ugdk::graphic::VisualEffect& eff) const {
+                    drawable_.Draw(geo * Geometry(tile_ * double(_tileSize)), eff);
+                }
+		const Vector2D& size() const { return drawable_.size(); }
 
 		Texture *getTexture(void) const { return texture_; };
 		bool getDeletesTexture(void) const { return deletesTexture_; } 
 		void setDeletesTexture(bool del) { deletesTexture_ = del; }
-		Integer2D position_; //tile relative
 	private:
 		Texture *texture_;
 		ugdk::graphic::TexturedRectangle drawable_;
