@@ -6,5 +6,5 @@ include_directories(${UGDK_EXTERNAL_INCLUDE_DIRS})
 
 add_definitions(-std=c++11)
 
-add_executable (FallIn src/FallIn.cpp)
+add_executable (FallIn src/FallIn.cpp src/AMB/DrawableImage.cpp)
 target_link_libraries(FallIn libugdk)
