@@ -1,0 +1,3 @@
+[submodule "FallIn/ugdk"]
+	path = FallIn/ugdk
+	url = git@github.com:uspgamedev/ugdk
