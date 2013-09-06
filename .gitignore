@@ -1,3 +1,4 @@
 FallIn/build/*
 FallIn/nbproject
 *.o
+*Thumbs.db

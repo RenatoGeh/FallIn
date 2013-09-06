@@ -4,7 +4,6 @@
 #include <ugdk/graphic/drawable.h>
 
 namespace {
-    using ugdk::graphic::Geometry;
     using ugdk::math::Integer2D;
 }
 

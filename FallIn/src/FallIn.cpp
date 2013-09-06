@@ -4,17 +4,18 @@
 #include <ugdk/graphic/module.h>
 #include <ugdk/graphic/texture.h>
 
+#include "AMB/Tile.hpp"
 #include "AMB/DrawableImage.hpp"
+#include "AMB/Area.hpp"
 
 int main() {
 	namespace system = ugdk::system;
 	system::Initialize();
 	
 	ugdk::action::Scene *scene = new ugdk::action::Scene;
-	amb::DrawableImage di("resources/Lydia.png");
-        di.setTile(2, 4);
+	//amb::Area area(10, 10, {200, 200});
 	
-	scene->set_render_function([&di](const ugdk::graphic::Geometry& geo, const ugdk::graphic::VisualEffect& eff){ di.Draw(geo, eff); });
+	//scene->set_render_function([&area](const ugdk::graphic::Geometry& geo, const ugdk::graphic::VisualEffect& eff){ area.Draw(geo, eff); });
 	
 	system::PushScene(scene);
 	system::Run();
