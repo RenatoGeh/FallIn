@@ -16,10 +16,10 @@ namespace amb {
 		delete[] tiles_;
 	}
 	
-	DrawableImage di("resources/Lydia.png");
 	
 	void TileMap::Draw(const ugdk::graphic::Geometry& geo, const ugdk::graphic::VisualEffect& eff) const {
 		//placeholder just for testing, of course
+		static DrawableImage di("resources/Lydia.png");
 		di.Draw(geo, eff);
 	}
 }

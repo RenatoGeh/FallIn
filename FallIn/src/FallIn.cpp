@@ -13,9 +13,9 @@ int main() {
 	system::Initialize();
 	
 	ugdk::action::Scene *scene = new ugdk::action::Scene;
-	//amb::Area area(10, 10, {200, 200});
+	amb::Area area(10, 10, {200, 200});
 	
-	//scene->set_render_function([&area](const ugdk::graphic::Geometry& geo, const ugdk::graphic::VisualEffect& eff){ area.Draw(geo, eff); });
+	scene->set_render_function([&area](const ugdk::graphic::Geometry& geo, const ugdk::graphic::VisualEffect& eff){ area.Draw(geo, eff); });
 	
 	system::PushScene(scene);
 	system::Run();

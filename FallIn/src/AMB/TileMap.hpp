@@ -2,10 +2,7 @@
 #define	TILEMAP_HPP
 #include "Tile.hpp"
 
-namespace {
-	using ugdk::math::Integer2D;
-	using ugdk::math::Vector2D;
-}
+#define override override // stops Netbeans from complaining about override keyword
 
 namespace amb {
 	class TileMap : public ugdk::graphic::Drawable {
@@ -14,15 +11,15 @@ namespace amb {
 		~TileMap();
 		
 		void Draw(const ugdk::graphic::Geometry&, const ugdk::graphic::VisualEffect&) const override;
-		const Vector2D& size() const override { return realSize_; }
+		const ugdk::math::Vector2D& size() const override { return realSize_; }
 		
 		Tile **getTiles() { return tiles_; }
 		
 		//Assumes you're sending a tile from the same TileMap
-		Tile& translate(const Tile& t, int x, int y) const { return tiles_[t.getIndex().x + x][t.getIndex().y + y]; }
+		Tile& translate(const Tile& t, int tx, int ty) const { return tiles_[t.getIndex().x + tx][t.getIndex().y + ty]; }
 	private:
-		const Integer2D size_;
-		Vector2D realSize_;
+		const Point2D<int> size_;
+		ugdk::math::Vector2D realSize_;
 		Tile **tiles_;
 	};
 }

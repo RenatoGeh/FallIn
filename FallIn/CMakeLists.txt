@@ -6,5 +6,11 @@ include_directories(${UGDK_EXTERNAL_INCLUDE_DIRS})
 
 add_definitions(-std=c++11)
 
-add_executable (FallIn src/FallIn.cpp src/AMB/DrawableImage.cpp src/AMB/Tile.cpp src/AMB/TileMap.cpp src/AMB/Area.cpp)
+add_executable (FallIn
+	src/FallIn.cpp
+	src/AMB/DrawableImage.cpp
+	src/AMB/Tile.cpp
+	src/AMB/TileMap.cpp
+	src/AMB/Area.cpp
+	src/AMB/Vector2D.cpp)
 target_link_libraries(FallIn libugdk)

@@ -11,7 +11,6 @@
 #include <string>
 namespace {
 	using ugdk::graphic::Texture;
-	using ugdk::math::Vector2D;
 	using ugdk::graphic::Geometry;
 }
 
@@ -19,9 +18,9 @@ namespace amb {
 	class DrawableImage : public Body {
 	public:
 		DrawableImage(const std::string&);
-		DrawableImage(const std::string&, const Vector2D&);
+		DrawableImage(const std::string&, const ugdk::math::Vector2D&);
 		DrawableImage(Texture*);
-		DrawableImage(Texture*, const Vector2D&);
+		DrawableImage(Texture*, const ugdk::math::Vector2D&);
 		DrawableImage(const DrawableImage&);
 		~DrawableImage();
 
@@ -30,9 +29,9 @@ namespace amb {
 		void Update(double) {}
 
 		void Draw(const Geometry& geo, const ugdk::graphic::VisualEffect& eff) const {
-                    drawable_.Draw(geo * Geometry(tile_ * double(_tileSize)), eff);
+                    drawable_.Draw(geo * Geometry(tile_ * _tileSize), eff);
                 }
-		const Vector2D& size() const { return drawable_.size(); }
+		const ugdk::math::Vector2D& size() const { return drawable_.size(); }
 
 		Texture *getTexture(void) const { return texture_; };
 		bool getDeletesTexture(void) const { return deletesTexture_; } 
