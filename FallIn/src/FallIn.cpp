@@ -3,12 +3,15 @@
 #include <ugdk/graphic/manager.h>
 #include <ugdk/graphic/module.h>
 #include <ugdk/graphic/texture.h>
+#include <ugdk/input.h>
 
 #include "AMB/Tile.hpp"
 #include "AMB/DrawableImage.hpp"
 #include "AMB/Area.hpp"
-#include "ugdk/internal/sdleventhandler.h"
+#include "AMB/Utils.hpp"
+#include "AMB/Camera.hpp"
 #include "ugdk/input/events.h"
+
 #include <iostream>
 
 int main() {
@@ -17,12 +20,16 @@ int main() {
 	
 	ugdk::action::Scene *scene = new ugdk::action::Scene;
 	
-	/* scene->event_handler().AddListener([](const ugdk::input::KeyPressedEvent& ev) {
-		return ([] (double) { std::cout << "asd"; return false;});
-	}); */
+	amb::utils::addEventListener<ugdk::input::KeyPressedEvent>(scene, [] (const ugdk::input::KeyPressedEvent& e) { std::cout << "asd" << std::endl; });
+        
 	amb::Area area(10, 5, {200, 200});
-	
-	scene->set_render_function([&area](const ugdk::graphic::Geometry& geo, const ugdk::graphic::VisualEffect& eff){ area.Draw(geo, eff); });
+        amb::Camera camera;
+        camera.translate({-100, -100});
+        
+	scene->set_render_function([&](const ugdk::graphic::Geometry& geo, const ugdk::graphic::VisualEffect& eff){ 
+            ugdk::graphic::Geometry g = camera.applyOn(geo);
+            area.Draw(g, eff);
+        });
 	
 	system::PushScene(scene);
 	system::Run();

@@ -12,5 +12,6 @@ add_executable (FallIn
 	src/AMB/Tile.cpp
 	src/AMB/TileMap.cpp
 	src/AMB/Area.cpp
-	src/AMB/Vector2D.cpp)
+	src/AMB/Vector2D.cpp
+        src/AMB/Camera.cpp)
 target_link_libraries(FallIn libugdk)

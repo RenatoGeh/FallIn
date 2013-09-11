@@ -17,7 +17,7 @@ namespace amb {
 			delete texture_;
 	}
 
-	DrawableImage& DrawableImage::operator =(const DrawableImage& other) {
+	DrawableImage& DrawableImage::operator = (const DrawableImage& other) {
 		texture_ = other.texture_;
 		drawable_ = other.drawable_;
 		deletesTexture_ = false;

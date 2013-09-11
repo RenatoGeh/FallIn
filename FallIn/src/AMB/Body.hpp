@@ -6,23 +6,25 @@
 #include "Vector2D.hpp"
 
 namespace amb {
-    const int _tileSize = 64;
+    const int _TileSize = 64;
     
     class Body : public ugdk::action::Entity, public ugdk::graphic::Drawable {
     public:
-		typedef Point2D<int> TilePosition;
+      typedef Point2D<int> TilePosition;
 		
-		virtual ~Body() {}
+      virtual ~Body() {}
+      
       virtual void Update(double dt) = 0;
 
       TilePosition& getTile() { return tile_; }
+      const TilePosition& getTile() const { return tile_; }
       void translate(const TilePosition& diff) { tile_ += diff; }
       void translate(int tx, int ty) { tile_.add(tx, ty); }
       void setTile(const TilePosition& tile) { tile_ = tile; }
       void setTile(int x, int y) { tile_.set(x, y); }
     protected:
-		Body() {} 
-		TilePosition tile_;
+      Body() {} 
+      TilePosition tile_;
     };
 }
 
