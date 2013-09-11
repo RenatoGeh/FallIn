@@ -63,6 +63,7 @@ namespace amb {
 			inline Vector2D<T> operator * (T t) const { return Vector2D(x * t, y * t); }
 			inline Vector2D<T>& operator /= (T t) { return div(t); }
 			inline Vector2D<T> operator / (T t) const { return Vector2D(x / t, y / t); }
+                        inline Vector2D<T> operator - () const { return Vector2D(-x, -y); }
 		public:
 			inline Vector2D<T>& normalize() { return div(length()); }
 			inline Vector2D<T> normalized() const { return Vector2D<T>(*this).normalize(); }

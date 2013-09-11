@@ -23,7 +23,7 @@ namespace amb {
 	
 	void TileMap::Draw(const Geometry& geo, const ugdk::graphic::VisualEffect& eff) const {
 		//placeholder just for testing, of course
-		static DrawableImage di("resources/Lydia.png");
+		static DrawableImage di("resources/tile.png");
 		for(int i = 0; i < size_.x; i++)
 			for(int j = 0; j < size_.y; j++)
 				di.Draw(geo * Geometry(ugdk::math::Vector2D(i, j) *= _TileSize), eff);

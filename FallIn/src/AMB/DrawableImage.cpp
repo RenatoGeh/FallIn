@@ -22,4 +22,4 @@ namespace amb {
 		drawable_ = other.drawable_;
 		deletesTexture_ = false;
 	}
-} //namespace amb
+}
