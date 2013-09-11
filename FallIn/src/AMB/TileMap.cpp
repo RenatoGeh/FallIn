@@ -1,6 +1,10 @@
 #include "TileMap.hpp"
 #include "DrawableImage.hpp"
 
+namespace {
+	using ugdk::graphic::Geometry;
+}
+
 namespace amb {
 	TileMap::TileMap(int width, int height) : size_(width, height), realSize_(width*_tileSize, height*_tileSize), tiles_(new Tile*[width]) {
 		for(int i = 0; i < width; i++) {
@@ -17,10 +21,12 @@ namespace amb {
 	}
 	
 	
-	void TileMap::Draw(const ugdk::graphic::Geometry& geo, const ugdk::graphic::VisualEffect& eff) const {
+	void TileMap::Draw(const Geometry& geo, const ugdk::graphic::VisualEffect& eff) const {
 		//placeholder just for testing, of course
 		static DrawableImage di("resources/Lydia.png");
-		di.Draw(geo, eff);
+		for(int i = 0; i < size_.x; i++)
+			for(int j = 0; j < size_.y; j++)
+				di.Draw(geo * Geometry(ugdk::math::Vector2D(i, j) *= _tileSize), eff);
 	}
 }
 

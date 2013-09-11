@@ -7,13 +7,20 @@
 #include "AMB/Tile.hpp"
 #include "AMB/DrawableImage.hpp"
 #include "AMB/Area.hpp"
+#include "ugdk/internal/sdleventhandler.h"
+#include "ugdk/input/events.h"
+#include <iostream>
 
 int main() {
 	namespace system = ugdk::system;
 	system::Initialize();
 	
 	ugdk::action::Scene *scene = new ugdk::action::Scene;
-	amb::Area area(10, 10, {200, 200});
+	
+	/* scene->event_handler().AddListener([](const ugdk::input::KeyPressedEvent& ev) {
+		return ([] (double) { std::cout << "asd"; return false;});
+	}); */
+	amb::Area area(10, 5, {200, 200});
 	
 	scene->set_render_function([&area](const ugdk::graphic::Geometry& geo, const ugdk::graphic::VisualEffect& eff){ area.Draw(geo, eff); });
 	

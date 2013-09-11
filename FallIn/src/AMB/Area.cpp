@@ -5,6 +5,6 @@ namespace amb {
 
 	}
 	void Area::Draw(const ugdk::graphic::Geometry& geo, const ugdk::graphic::VisualEffect& eff) const{
-		map_.Draw(geo, eff);
+		map_.Draw(geo * ugdk::graphic::Geometry(position_), eff);
 	}
 }
