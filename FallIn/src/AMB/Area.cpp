@@ -1,9 +1,14 @@
 #include <functional>
 
 #include <ugdk/action/scene.h>
+#include <ugdk/math.h>
 
 #include "Area.hpp"
-#include "Camera.hpp"
+
+#include "../AMB.hpp"
+#include "Area.hpp"
+#include "Body.hpp"
+
 
 namespace amb {
 	Area::Area(int width, int height, const ugdk::math::Vector2D& position) : scene_(new ugdk::action::Scene), hasFocus_(false), map_(width, height), position_(position) {
@@ -31,13 +36,13 @@ namespace amb {
 	bool Area::update(double dt) {
 		if(!hasFocus_) return true;
 		for(auto body : bodies_)
-			body->update(dt);
+			body->update(dt, *this);
 		return true;
 	}
 	
 	void Area::cleanBodies() {
 		bodies_.remove_if([&](Body *b) {
-			bool remove = b->to_be_removed();
+			bool remove = b->shouldDelete();
 			if(remove) {
 				b->onDelete();
 				delete b;

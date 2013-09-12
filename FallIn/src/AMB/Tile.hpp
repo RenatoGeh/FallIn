@@ -1,7 +1,8 @@
 #ifndef TILE_HPP
 #define	TILE_HPP
 
-#include "Body.hpp"
+#include "../AMB.hpp"
+#include "Vector2D.hpp"
 
 namespace amb {
 	class Tile {
@@ -13,7 +14,7 @@ namespace amb {
 		
 		void setIndex(int x, int y) { index_.set(x, y); }
 		const TilePosition& index() const { return index_; }
-		void occupy(Body* b) { body_ = b; }
+		void occupy(Body *b) { body_ = b; }
 		Body *getBodyOnTop() const { return body_; }
 	private:
 		TilePosition index_;

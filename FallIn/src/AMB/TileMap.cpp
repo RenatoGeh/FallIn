@@ -1,4 +1,6 @@
 #include "TileMap.hpp"
+
+#include "../AMB.hpp"
 #include "DrawableImage.hpp"
 
 namespace {
@@ -26,7 +28,7 @@ namespace amb {
 		static DrawableImage di("resources/tile.png");
 		for(int i = 0; i < size_.x; i++)
 			for(int j = 0; j < size_.y; j++)
-				di.Draw(geo * Geometry(ugdk::math::Vector2D(i, j) *= _TileSize), eff);
+				di.draw(geo * Geometry(ugdk::math::Vector2D(i, j) *= _TileSize), eff);
 	}
 }
 

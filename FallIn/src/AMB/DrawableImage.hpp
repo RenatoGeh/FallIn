@@ -9,7 +9,7 @@
 #include <ugdk/graphic/drawable/texturedrectangle.h>
 #include <ugdk/graphic/texture.h>
 
-#include "Body.hpp"
+#include "../AMB.hpp"
 
 namespace {
 	using ugdk::graphic::Texture;
@@ -17,7 +17,7 @@ namespace {
 }
 
 namespace amb {
-	class DrawableImage : public ugdk::graphic::Drawable {
+	class DrawableImage {
 	public:
 		DrawableImage(const std::string&);
 		DrawableImage(const std::string&, const ugdk::math::Vector2D&);
@@ -28,7 +28,7 @@ namespace amb {
 
 		DrawableImage& operator = (const DrawableImage&);
 
-		void Draw(const Geometry& geo, const ugdk::graphic::VisualEffect& eff) const { drawable_.Draw(geo, eff); }
+		void draw(const Geometry& geo, const ugdk::graphic::VisualEffect& eff) const { drawable_.Draw(geo, eff); }
 		const ugdk::math::Vector2D& size() const { return drawable_.size(); }
 
 		Texture *texture() const { return texture_; };

@@ -6,8 +6,9 @@
 #include <ugdk/graphic/geometry.h>
 #include <ugdk/graphic/visualeffect.h>
 
+#include "../AMB.hpp"
+#include "Camera.hpp"
 #include "TileMap.hpp"
-#include	"Camera.hpp"
 
 namespace amb {
 	class Area {

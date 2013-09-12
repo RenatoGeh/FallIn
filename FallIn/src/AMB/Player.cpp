@@ -1,7 +1,8 @@
+#include <ugdk/input/keyboard.h>
+#include <ugdk/input/manager.h>
+#include <ugdk/input/module.h>
+
 #include "Player.hpp"
-#include "ugdk/input/keyboard.h"
-#include "ugdk/input/manager.h"
-#include "ugdk/input/module.h"
 
 namespace {
 	namespace keys = ugdk::input;
@@ -19,7 +20,7 @@ namespace amb {
     
     }
     
-    void Player::Update(double dt) {
+    void Player::update(double dt, const Area& area) {
 		 if(keyPressed(keys::K_d))
 			 translate(1, 0);
 		 if(keyPressed(keys::K_a))

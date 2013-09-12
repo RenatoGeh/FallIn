@@ -1,10 +1,3 @@
-/*
- * Vector2D.hpp
- *
- *  Created on: Aug 28, 2013
- *      Author: renatogeh
- */
-
 #ifndef VECTOR2D_HPP_
 #define VECTOR2D_HPP_
 

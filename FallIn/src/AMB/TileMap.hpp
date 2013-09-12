@@ -1,8 +1,11 @@
 #ifndef TILEMAP_HPP
 #define	TILEMAP_HPP
+
+#include	"ugdk/graphic/drawable.h"
+
+#include "../AMB.hpp"
 #include "Tile.hpp"
 
-#define override override // stops Netbeans from complaining about override keyword
 
 namespace amb {
 	class TileMap : public ugdk::graphic::Drawable {

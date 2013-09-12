@@ -1,6 +1,7 @@
 #ifndef PLAYER_HPP
 #define	PLAYER_HPP
 
+#include "../AMB.hpp"
 #include "Actor.hpp"
 
 namespace amb {
@@ -9,7 +10,7 @@ namespace amb {
         Player(DrawableImage*, const TilePosition& = TilePosition());
         virtual ~Player(void);
     public:
-        virtual void Update(double dt);
+        virtual void update(double dt, const Area& area) override;
     };
 }
 
