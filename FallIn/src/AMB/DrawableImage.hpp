@@ -28,13 +28,11 @@ namespace amb {
 
 		DrawableImage& operator = (const DrawableImage&);
 
-		void Draw(const Geometry& geo, const ugdk::graphic::VisualEffect& eff) const {
-                    drawable_.Draw(geo, eff);
-                }
+		void Draw(const Geometry& geo, const ugdk::graphic::VisualEffect& eff) const { drawable_.Draw(geo, eff); }
 		const ugdk::math::Vector2D& size() const { return drawable_.size(); }
 
-		Texture *getTexture(void) const { return texture_; };
-		bool deletesTexture(void) const { return deletesTexture_; } 
+		Texture *texture() const { return texture_; };
+		bool deletesTexture() const { return deletesTexture_; } 
 		void setDeletesTexture(bool del) { deletesTexture_ = del; }
 	private:
 		Texture *texture_;

@@ -12,7 +12,7 @@ namespace amb {
 		Tile(int, int);
 		
 		void setIndex(int x, int y) { index_.set(x, y); }
-		const TilePosition& getIndex() const { return index_; }
+		const TilePosition& index() const { return index_; }
 		void occupy(Body* b) { body_ = b; }
 		Body *getBodyOnTop() const { return body_; }
 	private:

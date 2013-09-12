@@ -15,6 +15,10 @@ namespace amb {
       virtual ~Body() {}
       
       virtual void Update(double dt) = 0;
+		void update(double dt) { Update(dt); }
+		void draw(const ugdk::graphic::Geometry& geo, const ugdk::graphic::VisualEffect& eff) const { Draw(geo, eff); }
+		
+		virtual void onDelete() {}
 
       TilePosition& getTile() { return tile_; }
       const TilePosition& getTile() const { return tile_; }

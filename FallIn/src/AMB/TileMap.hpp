@@ -11,12 +11,13 @@ namespace amb {
 		~TileMap();
 		
 		void Draw(const ugdk::graphic::Geometry&, const ugdk::graphic::VisualEffect&) const override;
+		void draw(const ugdk::graphic::Geometry& geo, const ugdk::graphic::VisualEffect& eff) const { Draw(geo, eff); }
 		const ugdk::math::Vector2D& size() const override { return realSize_; }
 		
-		Tile **getTiles() { return tiles_; }
+		Tile **tiles() { return tiles_; }
 		
 		//Assumes you're sending a tile from the same TileMap
-		Tile& translate(const Tile& t, int tx, int ty) const { return tiles_[t.getIndex().x + tx][t.getIndex().y + ty]; }
+		Tile& translate(const Tile& t, int tx, int ty) const { return tiles_[t.index().x + tx][t.index().y + ty]; }
 	private:
 		const Point2D<int> size_;
 		ugdk::math::Vector2D realSize_;

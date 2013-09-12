@@ -19,25 +19,15 @@ int main() {
 	namespace system = ugdk::system;
 	system::Initialize();
 	
-	ugdk::action::Scene *scene = new ugdk::action::Scene;
+	amb::Area area(10, 5, {50, 100});
+	amb::Player player(new amb::DrawableImage("resources/Lydia.png"));
+	area.addBody(&player);
+
 	
-	amb::utils::addEventListener<ugdk::input::KeyPressedEvent>(scene, [] (const ugdk::input::KeyPressedEvent& e) { std::cout << "asd" << std::endl; });
+	//amb::utils::addEventListener<ugdk::input::KeyPressedEvent>(area.scene(), [] (const ugdk::input::KeyPressedEvent& e) { std::cout << "asd" << std::endl; });
         
-	amb::Area area(10, 5, {200, 200});
-        amb::Camera camera;
-        amb::Player player(new amb::DrawableImage("resources/Lydia.png"));
-        
-        camera.translate({-100, -100});
-        
-        scene->AddEntity(&player);
-        
-	scene->set_render_function([&](const ugdk::graphic::Geometry& geo, const ugdk::graphic::VisualEffect& eff){ 
-            ugdk::graphic::Geometry g = camera.applyOn(geo);
-            player.Draw(g, eff);
-            area.Draw(g, eff);
-        });
 	
-	system::PushScene(scene);
+	system::PushScene(area.scene());
 	system::Run();
 	system::Release();
 	return 0;
