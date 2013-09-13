@@ -24,9 +24,8 @@ namespace amb {
 		 amb::utils::addEventListener<ugdk::input::MouseButtonPressedEvent>(area_->scene(), 
 				  [this](const ugdk::input::MouseButtonPressedEvent&) {
 					  Point2D<int> pos = ugdk::input::manager()->GetMousePosition();
-					  if(pos.inside(area_->position(), area_->tileMap().size())) {
-						  std::cout << "yoooo" << std::endl;
-						  Tile& t = area_->tileMap().getTile((pos - area_->position()).div(_TileSize));
+					  if(pos.inside(area_->position(), area_->tileMap().size() * _TileSize)) {
+						  Tile& t = area_->tileMap().getTile((pos -= area_->position()).div(_TileSize));
 						  if(!t.ocuppied()) {
 							  tile_->occupy(NULL);
 							  t.occupy(this);

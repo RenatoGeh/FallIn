@@ -11,22 +11,17 @@ namespace {
 }
 
 namespace amb {
-	class TileMap : public ugdk::graphic::Drawable {
+	class TileMap {
 	private:
 		const Point2D<int> size_;
-		ugdk::math::Vector2D realSize_;
 		Tile **tiles_;
 	public:
 		TileMap(int, int);
 		~TileMap();
-	public:	
-		void Draw(const ugdk::graphic::Geometry&, const ugdk::graphic::VisualEffect&) const;
-		inline void draw(const ugdk::graphic::Geometry& geo, 
-			const ugdk::graphic::VisualEffect& eff) const { Draw(geo, eff); }
-		inline const ugdk::math::Vector2D& size() const { return realSize_; }
 	public:
 		Tile **tiles() { return tiles_; }
 		Tile& getTile(const Point2D<int>& pos) { return tiles_[pos.x][pos.y]; }
+		const Point2D<int>& size() const { return size_; }
 	public:
 		/* Assumes you're sending a tile from the same TileMap */
 		inline Tile& translate(const Tile& t, int tx, int ty) const { 

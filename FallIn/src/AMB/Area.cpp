@@ -14,7 +14,7 @@
 
 
 namespace amb {
-	Area::Area(int width, int height, const ugdk::math::Vector2D& position) : scene_(new ugdk::action::Scene), hasFocus_(false), map_(width, height), position_(position) {
+	Area::Area(int width, int height, const std::string& st, const ugdk::math::Vector2D& position) : scene_(new ugdk::action::Scene), image_(st), hasFocus_(false), map_(width, height), position_(position) {
 		using namespace std::placeholders;
 		camera_.translate(position);
 		scene_->set_focus_callback([&](ugdk::action::Scene*){ hasFocus_ = true; });
@@ -29,7 +29,9 @@ namespace amb {
         
 	void Area::draw(const ugdk::graphic::Geometry& geo, const ugdk::graphic::VisualEffect& eff) const {
 		ugdk::graphic::Geometry g = camera_.applyOn(geo);
-		map_.draw(g, eff);
+		for(int i = 0; i < map_.size().x; i++)
+			for(int j = 0; j < map_.size().y; j++)
+				image_.draw(g * Geometry(ugdk::math::Vector2D(i, j) *= _TileSize), eff);
 		for(auto body : bodies_)
 			body->draw(g, eff);
 	}

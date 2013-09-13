@@ -10,11 +10,12 @@
 #include "../AMB.hpp"
 #include "Camera.hpp"
 #include "TileMap.hpp"
+#include "DrawableImage.hpp"
 
 namespace amb {
 	class Area {
 	public:
-		Area(int, int, const ugdk::math::Vector2D& = ugdk::math::Vector2D());
+		Area(int, int, const std::string&, const ugdk::math::Vector2D& = ugdk::math::Vector2D());
 		~Area();
 		
 		void draw(const ugdk::graphic::Geometry&, const ugdk::graphic::VisualEffect&) const;
@@ -34,6 +35,7 @@ namespace amb {
 	private:
 		Camera camera_;
 		
+		DrawableImage image_;
 		ugdk::action::Scene *scene_;
 		bool hasFocus_;
 		
