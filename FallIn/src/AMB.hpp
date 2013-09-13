@@ -10,6 +10,7 @@ namespace amb {
 	class TileMap;
 	class Actor;
 	class Player;
+	class NPC;
 	class DrawableImage;
 	class Camera;
 	

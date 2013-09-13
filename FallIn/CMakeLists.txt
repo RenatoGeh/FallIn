@@ -16,5 +16,6 @@ add_executable (FallIn
         src/AMB/Camera.cpp
         src/AMB/Actor.cpp
         src/AMB/Player.cpp
+		  src/AMB/NPC.cpp
 )
 target_link_libraries(FallIn libugdk)

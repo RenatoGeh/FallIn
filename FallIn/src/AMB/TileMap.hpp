@@ -12,24 +12,28 @@ namespace {
 
 namespace amb {
 	class TileMap : public ugdk::graphic::Drawable {
-	public:
-		TileMap(int, int);
-		~TileMap();
-		
-		void Draw(const ugdk::graphic::Geometry&, const ugdk::graphic::VisualEffect&) const override;
-		void draw(const ugdk::graphic::Geometry& geo, const ugdk::graphic::VisualEffect& eff) const { Draw(geo, eff); }
-		const ugdk::math::Vector2D& size() const override { return realSize_; }
-		
-		Tile **tiles() { return tiles_; }
-		
-		//Assumes you're sending a tile from the same TileMap
-		Tile& translate(const Tile& t, int tx, int ty) const { return tiles_[clamp(t.index().x + tx, 0, size_.x - 1)][clamp(t.index().y + ty, 0, size_.y - 1)]; }
 	private:
 		const Point2D<int> size_;
 		ugdk::math::Vector2D realSize_;
 		Tile **tiles_;
+	public:
+		TileMap(int, int);
+		~TileMap();
+	public:	
+		void Draw(const ugdk::graphic::Geometry&, const ugdk::graphic::VisualEffect&) const;
+		inline void draw(const ugdk::graphic::Geometry& geo, 
+			const ugdk::graphic::VisualEffect& eff) const { Draw(geo, eff); }
+		inline const ugdk::math::Vector2D& size() const { return realSize_; }
+	public:
+		Tile **tiles() { return tiles_; }
+	public:
+		/* Assumes you're sending a tile from the same TileMap */
+		inline Tile& translate(const Tile& t, int tx, int ty) const { 
+			return tiles_[clamp(t.index().x + tx, 0, size_.x - 1)]
+					  [clamp(t.index().y + ty, 0, size_.y - 1)]; 
+		}
 	};
 }
 
-#endif	/* TILEMAP_HPP */
+#endif
 

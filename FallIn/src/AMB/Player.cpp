@@ -11,9 +11,11 @@ namespace {
 }
 
 namespace amb {
-    Player::Player(DrawableImage* img, Area *area, Tile *t) : Actor(img, area, t) {}
+    Player::Player(const std::string& name, DrawableImage* img, Area *area, Tile *t) : 
+		Actor(name, img, area, t) {}
 	 
-	 Player::Player(DrawableImage *img, Area *area, const Point2D<int>& t) : Actor(img, area, t) {}
+	 Player::Player(const std::string& name, DrawableImage *img, Area *area, const Point2D<int>& t) : 
+		Actor(name, img, area, t) {}
 
     Player::~Player() {}
     
@@ -31,7 +33,7 @@ namespace amb {
 		 if(tile_->ocuppied())
 			 tile_ = prev;
 		 else{
-			 prev->occupy(NULL);
+			 prev->occupy(nullptr);
 			 tile_->occupy(this);
 		 }
 	 }

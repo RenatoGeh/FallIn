@@ -2,10 +2,6 @@
 #define	UTILS_HPP
 #include <functional>
 
-namespace {
-    
-}
-
 namespace amb {
     namespace utils {
         
@@ -16,6 +12,8 @@ namespace amb {
                     return [&] (double) { task(event); return false; };
                 }, priority);
         }
+		  
+		  //const ugdk::graphic::Font _DefFont;
     }
 }
 
