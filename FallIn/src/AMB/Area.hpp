@@ -5,6 +5,7 @@
 
 #include <ugdk/graphic/geometry.h>
 #include <ugdk/graphic/visualeffect.h>
+#include <ugdk/action/scene.h>
 
 #include "../AMB.hpp"
 #include "Camera.hpp"
@@ -23,6 +24,9 @@ namespace amb {
 		
 		void addBody(Body *b) { bodies_.push_back(b); }
 		void removeBody(Body *b) { bodies_.remove(b); }
+		
+		TileMap& tileMap() { return map_; }
+		const TileMap& tileMap() const { return map_; }
 		
 		ugdk::action::Scene *scene() { return scene_; }
 	private:

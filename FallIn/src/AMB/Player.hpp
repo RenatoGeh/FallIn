@@ -7,10 +7,11 @@
 namespace amb {
     class Player : public Actor {
     public:
-        Player(DrawableImage*, const TilePosition& = TilePosition());
+        Player(DrawableImage*, Area* = NULL, Tile* = NULL);
+		  Player(DrawableImage*, Area*, const Point2D<int>& = Point2D<int>());
         virtual ~Player(void);
     public:
-        virtual void update(double dt, const Area& area) override;
+        virtual void update(double dt) override;
     };
 }
 

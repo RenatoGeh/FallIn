@@ -15,6 +15,7 @@ namespace amb {
 		void setIndex(int x, int y) { index_.set(x, y); }
 		const TilePosition& index() const { return index_; }
 		void occupy(Body *b) { body_ = b; }
+		bool ocuppied() { return body_ != NULL; }
 		Body *getBodyOnTop() const { return body_; }
 	private:
 		TilePosition index_;

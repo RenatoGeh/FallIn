@@ -22,9 +22,7 @@ namespace amb {
 		scene_->AddTask(std::bind(&Area::cleanBodies, this), .55);
 	}
 	
-	Area::~Area() {
-		delete scene_;
-	}
+	Area::~Area() { }
         
 	void Area::draw(const ugdk::graphic::Geometry& geo, const ugdk::graphic::VisualEffect& eff) const {
 		ugdk::graphic::Geometry g = camera_.applyOn(geo);
@@ -36,7 +34,7 @@ namespace amb {
 	bool Area::update(double dt) {
 		if(!hasFocus_) return true;
 		for(auto body : bodies_)
-			body->update(dt, *this);
+			body->update(dt);
 		return true;
 	}
 	

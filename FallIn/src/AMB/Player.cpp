@@ -5,22 +5,21 @@
 #include "Player.hpp"
 
 namespace {
-	namespace keys = ugdk::input;
 	bool keyPressed(ugdk::input::Key key) {
 		return ugdk::input::manager()->KeyPressed(key);
 	}
 }
 
 namespace amb {
-    Player::Player(DrawableImage* img, const TilePosition& pos) : Actor(img, pos) {
-    
-    }
+    Player::Player(DrawableImage* img, Area *area, Tile *t) : Actor(img, area, t) {}
+	 
+	 Player::Player(DrawableImage *img, Area *area, const Point2D<int>& t) : Actor(img, area, t) {}
 
-    Player::~Player() {
+    Player::~Player() {}
     
-    }
-    
-    void Player::update(double dt, const Area& area) {
+    void Player::update(double dt) {
+		namespace keys = ugdk::input;
+		 Tile *prev = tile_;
 		 if(keyPressed(keys::K_d))
 			 translate(1, 0);
 		 if(keyPressed(keys::K_a))
@@ -29,5 +28,11 @@ namespace amb {
 			 translate(0, -1);
 		 if(keyPressed(keys::K_s))
 			 translate(0, 1);
-    }
+		 if(tile_->ocuppied())
+			 tile_ = prev;
+		 else{
+			 prev->occupy(NULL);
+			 tile_->occupy(this);
+		 }
+	 }
 }
