@@ -26,6 +26,7 @@ namespace amb {
 		inline const ugdk::math::Vector2D& size() const { return realSize_; }
 	public:
 		Tile **tiles() { return tiles_; }
+		Tile& getTile(const Point2D<int>& pos) { return tiles_[pos.x][pos.y]; }
 	public:
 		/* Assumes you're sending a tile from the same TileMap */
 		inline Tile& translate(const Tile& t, int tx, int ty) const { 

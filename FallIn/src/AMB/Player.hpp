@@ -12,7 +12,9 @@ namespace amb {
 			virtual ~Player(void);
 		public:
 			virtual void update(double dt);
-	};
+	 private:
+		 void init(void);
+    };
 }
 
 #endif

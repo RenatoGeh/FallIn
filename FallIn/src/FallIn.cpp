@@ -16,9 +16,19 @@
 
 #include <iostream>
 
+void init() {
+	namespace system = ugdk::system;
+	system::Configuration conf;
+	conf.window_title = "FallIn - indev 0.0.1";
+	conf.window_resolution.x = 1280;
+	conf.window_resolution.y = 720;
+	system::Initialize(conf);
+}
+
 int main() {
 	namespace system = ugdk::system;
-	system::Initialize();
+	init();
+	
 	
 	amb::Area area(10, 5, {50, 100});
 	amb::Player player("Lydia", new amb::DrawableImage("resources/Lydia.png"), &area, {0, 0});

@@ -29,6 +29,8 @@ namespace amb {
 		const TileMap& tileMap() const { return map_; }
 		
 		ugdk::action::Scene *scene() { return scene_; }
+		
+		const ugdk::math::Vector2D& position() const { return position_; }
 	private:
 		Camera camera_;
 		

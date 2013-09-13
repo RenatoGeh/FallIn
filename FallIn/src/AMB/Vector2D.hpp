@@ -22,9 +22,11 @@ namespace amb {
 			explicit Vector2D(T = 0);
 			Vector2D(T, T);
 			Vector2D(const Vector2D<T>&);
+			Vector2D(const ugdk::math::Vector2D&);
 		public:
 			inline Vector2D<T>& set(T, T);
 			inline Vector2D<T>& set(T t) { return set(t, t); }
+			inline Vector2D<T>& operator = (const ugdk::math::Vector2D& v) { set(v.x, v.y); }
 			inline Vector2D<T>& add(T, T);
 			inline Vector2D<T>& add(T t) { return add(t, t); }
 			inline Vector2D<T>& sub(T, T);
@@ -56,7 +58,7 @@ namespace amb {
 			inline Vector2D<T> operator * (T t) const { return Vector2D(x * t, y * t); }
 			inline Vector2D<T>& operator /= (T t) { return div(t); }
 			inline Vector2D<T> operator / (T t) const { return Vector2D(x / t, y / t); }
-                        inline Vector2D<T> operator - () const { return Vector2D(-x, -y); }
+         inline Vector2D<T> operator - () const { return Vector2D(-x, -y); }
 		public:
 			inline Vector2D<T>& normalize() { return div(length()); }
 			inline Vector2D<T> normalized() const { return Vector2D<T>(*this).normalize(); }
@@ -70,7 +72,12 @@ namespace amb {
 			Vector2D<T>& rotate(double);
 			inline Vector2D<T> rotated(double angle) const { return Vector2D<T>(*this).rotate(angle); }
 		public:
-			operator ugdk::math::Vector2D() { return ugdk::math::Vector2D(x, y); }
+			operator ugdk::math::Vector2D() const { return ugdk::math::Vector2D(x, y); }
+		public:
+			inline bool inside(T x_, T y_, T w, T h) const { return !(x < x_ || x > x_ + w || y < y_ || y > y_ + h); }
+			inline bool inside(const Vector2D<T>& pos, const Vector2D<T>& size) const { return inside(pos.x, pos.y, size.x, size.y); }
+		public:
+			inline void print(std::ostream& stream) { stream << '[' << x << ", " << y << ']'; }
 	};
 	
 	template <typename T>

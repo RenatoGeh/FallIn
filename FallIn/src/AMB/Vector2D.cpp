@@ -4,13 +4,16 @@
 
 namespace amb {
 	template <typename T>
-	Vector2D<T>::Vector2D(T t) : x(t), y(t) {};
+	Vector2D<T>::Vector2D(T t) : x(t), y(t) {}
 	
 	template <typename T>
-	Vector2D<T>::Vector2D(T x, T y) : x(x), y(y) {};
+	Vector2D<T>::Vector2D(T x, T y) : x(x), y(y) {}
 
 	template <typename T>
-	Vector2D<T>::Vector2D(const Vector2D<T>& v) : x(v.x), y(v.y) {};
+	Vector2D<T>::Vector2D(const Vector2D<T>& v) : x(v.x), y(v.y) {}
+	
+	template <typename T>
+	Vector2D<T>::Vector2D(const ugdk::math::Vector2D& v) : x(v.x), y(v.y) {}
 	
 	template <typename T>
 	Vector2D<T>& Vector2D<T>::rotate(double angle) {
@@ -23,8 +26,10 @@ namespace amb {
 	
 	template <typename T>
 	std::ostream& operator << (std::ostream& stream, const Vector2D<T>& v) {
-		return stream << '[' << v.x << ", " << v.y << ']';
+		stream << '[' << v.x << ", " << v.y << ']';
+		return stream;
 	}
+	
 	template class Vector2D<int>;
 	template class Vector2D<double>;
 }

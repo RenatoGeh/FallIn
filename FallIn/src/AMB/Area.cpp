@@ -1,13 +1,16 @@
+#include "Area.hpp"
+
 #include <functional>
+#include <iostream>
 
 #include <ugdk/action/scene.h>
 #include <ugdk/math.h>
 
-#include "Area.hpp"
-
 #include "../AMB.hpp"
-#include "Area.hpp"
 #include "Body.hpp"
+#include "Utils.hpp"
+#include "ugdk/input/events.h"
+#include "ugdk/input/module.h"
 
 
 namespace amb {
