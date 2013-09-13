@@ -45,7 +45,7 @@ namespace amb {
 			bool remove = b->shouldDelete();
 			if(remove) {
 				b->onDelete();
-				delete b;
+                                delete b;
 			}
 			return remove;
 		});

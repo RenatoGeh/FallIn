@@ -14,4 +14,3 @@ namespace amb {
         geometry_.Compose(Geometry({0, 0}, ugdk::math::Vector2D(1/scale.x, 1/scale.y).Scale(s)));
     }
 }
-
