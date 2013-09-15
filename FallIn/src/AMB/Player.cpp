@@ -7,8 +7,11 @@
 #include "Utils.hpp"
 
 namespace {
-	bool keyPressed(ugdk::input::Key key) {
-		return ugdk::input::manager()->KeyPressed(key);
+	inline bool keyPressed(ugdk::input::Keycode key) {
+		return ugdk::input::manager()->keyboard().IsPressed(key);
+	}
+	inline bool keyPressed(char key) {
+		return keyPressed(ugdk::input::Keycode(key));
 	}
 }
 
@@ -21,10 +24,10 @@ namespace amb {
     Player::~Player() {}
     
 	 void Player::init() {
-		 amb::utils::addEventListener<ugdk::input::MouseButtonPressedEvent>(area_->scene(), 
-				  [this](const ugdk::input::MouseButtonPressedEvent&) {
-					  Point2D<int> pos = ugdk::input::manager()->GetMousePosition();
-					  if(pos.inside(area_->position(), area_->tileMap().size() * _TileSize)) {
+		 area_->scene()->event_handler().AddListener<ugdk::input::MouseButtonPressedEvent>( 
+				  [this](const ugdk::input::MouseButtonPressedEvent& e) {
+					  Point2D<int> pos = ugdk::input::manager()->mouse().position();
+					  if(e.button == ugdk::input::MouseButton::LEFT && pos.inside(area_->position(), area_->tileMap().size() * _TileSize)) {
 						  Tile& t = area_->tileMap().getTile((pos -= area_->position()).div(_TileSize));
 						  if(!t.ocuppied()) {
 							  tile_->occupy(NULL);
@@ -36,15 +39,14 @@ namespace amb {
 	 }
 	 
     void Player::update(double dt) {
-		namespace keys = ugdk::input;
 		 Tile *prev = tile_;
-		 if(keyPressed(keys::K_d))
+		 if(keyPressed('d'))
 			 translate(1, 0);
-		 if(keyPressed(keys::K_a))
+		 if(keyPressed('a'))
 			 translate(-1, 0);
-		 if(keyPressed(keys::K_w))
+		 if(keyPressed('w'))
 			 translate(0, -1);
-		 if(keyPressed(keys::K_s))
+		 if(keyPressed('s'))
 			 translate(0, 1);
 		 if(tile_->ocuppied())
 			 tile_ = prev;

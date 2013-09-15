@@ -21,8 +21,8 @@ namespace amb {
 		scene_->set_defocus_callback([&](ugdk::action::Scene*){ hasFocus_ = false; });
 		
 		scene_->set_render_function(std::bind(&Area::draw, this, _1, _2));
-		scene_->AddTask(std::bind(&Area::update, this, _1), .6);
-		scene_->AddTask(std::bind(&Area::cleanBodies, this), .55);
+		scene_->AddTask(ugdk::system::Task(std::bind(&Area::update, this, _1), .6));
+		scene_->AddTask(ugdk::system::Task(std::bind(&Area::cleanBodies, this), .55));
 	}
 	
 	Area::~Area() { }
@@ -48,7 +48,7 @@ namespace amb {
 			bool remove = b->shouldDelete();
 			if(remove) {
 				b->onDelete();
-                                delete b;
+            delete b;
 			}
 			return remove;
 		});

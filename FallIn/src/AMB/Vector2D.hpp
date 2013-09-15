@@ -23,6 +23,7 @@ namespace amb {
 			Vector2D(T, T);
 			Vector2D(const Vector2D<T>&);
 			Vector2D(const ugdk::math::Vector2D&);
+			Vector2D(const ugdk::math::Integer2D&);
 		public:
 			inline Vector2D<T>& set(T, T);
 			inline Vector2D<T>& set(T t) { return set(t, t); }

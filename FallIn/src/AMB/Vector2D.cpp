@@ -1,4 +1,5 @@
 #include "Vector2D.hpp"
+#include "ugdk/math/integer2D.h"
 #include <cmath>
 #include <iostream>
 
@@ -14,6 +15,9 @@ namespace amb {
 	
 	template <typename T>
 	Vector2D<T>::Vector2D(const ugdk::math::Vector2D& v) : x(v.x), y(v.y) {}
+	
+	template <typename T>
+	Vector2D<T>::Vector2D(const ugdk::math::Integer2D& i) : x(i.x), y(i.y) {}
 	
 	template <typename T>
 	Vector2D<T>& Vector2D<T>::rotate(double angle) {
