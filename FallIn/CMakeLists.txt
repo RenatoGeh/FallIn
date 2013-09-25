@@ -17,5 +17,7 @@ add_executable (FallIn
         src/AMB/Actor.cpp
         src/AMB/Player.cpp
 		  src/AMB/NPC.cpp
+		  src/AMB/Wanderer.cpp
+		  src/AMB/AwesomeTimer.cpp
 )
 target_link_libraries(FallIn libugdk)

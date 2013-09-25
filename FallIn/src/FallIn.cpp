@@ -13,8 +13,14 @@
 #include "AMB/Camera.hpp"
 #include "AMB/Player.hpp"
 #include "AMB/NPC.hpp"
+#include "AMB/Wanderer.hpp"
+#include "AMB/AwesomeTimer.hpp"
 
 #include <iostream>
+
+ugdk::action::Scene *mainScene;
+
+void update(double);
 
 void init() {
 	namespace system = ugdk::system;
@@ -28,20 +34,29 @@ void init() {
 int main() {
 	namespace system = ugdk::system;
 	init();
+	mainScene = new ugdk::action::Scene;
+	amb::AwesomeTimer::mainTimer.addTimer([](amb::AwesomeAction* a) {
+		static int i = 0;
+		std::cout << "Hey" << std::endl; 
+		if(++i == 3) a->remove();
+	}, 1, true);
+	mainScene->AddTask(update);
+	system::PushScene(mainScene);
 	
 	
 	amb::Area area(16, 11, "resources/tile.png", {10, 10});
 	amb::Player player("Lydia", new amb::DrawableImage("resources/Lydia.png"), &area, {1, 1});
-	amb::NPC dat_stache("Pornstache", new amb::DrawableImage("resources/pornstache.png"), &area, {4, 3});
+	amb::Wanderer dat_stache("Pornstache", new amb::DrawableImage("resources/pornstache.png"), &area, {4, 3});
 	
 	area.addBody(&player);
-	area.addBody(&dat_stache);
-	
-	//amb::utils::addEventListener<ugdk::input::KeyPressedEvent>(area.scene(), [] (const ugdk::input::KeyPressedEvent& e) { std::cout << "asd" << std::endl; });
-        
+	area.addBody(&dat_stache);        
 	
 	system::PushScene(area.scene());
 	system::Run();
 	system::Release();
 	return 0;
+}
+
+void update(double dt) {
+	amb::AwesomeTimer::mainTimer.update(dt);
 }

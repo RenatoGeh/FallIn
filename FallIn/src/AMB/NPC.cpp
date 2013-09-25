@@ -13,11 +13,5 @@ namespace amb {
 	
 	NPC::~NPC() {}
 	
-	void NPC::update(double dt) {
-		//TODO: Stuff.
-	}
-	
-	void NPC::draw(const ugdk::graphic::Geometry& geom, const ugdk::graphic::VisualEffect& eff) const {
-		Actor::draw(geom, eff);
-	}
+	void NPC::update(double) {}
 }
