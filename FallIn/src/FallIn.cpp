@@ -41,7 +41,7 @@ int main() {
 	
 	//TEST TEST TEST
 	
-	amb::Area area(16, 11, "resources/tile.png", {10, 10});
+	amb::Area area(19, 11, "resources/tile.png", {11, 10});
 	amb::Player player("Lydia", new amb::DrawableImage("resources/Lydia.png"), &area, {1, 1});
 	amb::DrawableImage *stache = new amb::DrawableImage("resources/pornstache.png");
 	amb::Wanderer datStache("Pornstache", stache, &area, {4, 3});

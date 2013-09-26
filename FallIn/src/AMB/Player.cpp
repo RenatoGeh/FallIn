@@ -24,18 +24,7 @@ namespace amb {
     Player::~Player() {}
     
 	 void Player::init() {
-		 area_->scene()->event_handler().AddListener<ugdk::input::MouseButtonPressedEvent>( 
-				  [this](const ugdk::input::MouseButtonPressedEvent& e) {
-					  Point2D<int> pos = ugdk::input::manager()->mouse().position();
-					  if(e.button == ugdk::input::MouseButton::LEFT && pos.inside(area_->position(), area_->tileMap().size() * _TileSize)) {
-						  Tile& t = area_->tileMap().getTile((pos -= area_->position()).div(_TileSize));
-						  if(!t.ocuppied()) {
-							  tile_->occupy(NULL);
-							  t.occupy(this);
-							  tile_ = &t;
-						  }
-					  }
-				  });
+		
 	 }
 	 
     void Player::update(double dt) {

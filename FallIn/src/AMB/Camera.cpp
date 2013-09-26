@@ -11,6 +11,6 @@ namespace amb {
     
     void Camera::setScale(const ugdk::math::Vector2D& s) {
         ugdk::math::Vector2D scale = geometry_.CalculateScale();
-        geometry_.Compose(Geometry({0, 0}, ugdk::math::Vector2D(1/scale.x, 1/scale.y).Scale(s)));
+        geometry_.Compose(Geometry(_VectorZero, ugdk::math::Vector2D(1/scale.x, 1/scale.y).Scale(s)));
     }
 }

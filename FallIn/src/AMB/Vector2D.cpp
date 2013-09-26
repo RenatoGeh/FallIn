@@ -28,12 +28,6 @@ namespace amb {
 		return *this;
 	}
 	
-	template <typename T>
-	std::ostream& operator << (std::ostream& stream, const Vector2D<T>& v) {
-		stream << '[' << v.x << ", " << v.y << ']';
-		return stream;
-	}
-	
 	template class Vector2D<int>;
 	template class Vector2D<double>;
 }

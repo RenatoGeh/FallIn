@@ -23,6 +23,21 @@ namespace amb {
 		scene_->set_render_function(std::bind(&Area::draw, this, _1, _2));
 		scene_->AddTask(ugdk::system::Task(std::bind(&Area::update, this, _1), .6));
 		scene_->AddTask(ugdk::system::Task(std::bind(&Area::cleanBodies, this), .55));
+		
+		scene_->event_handler().AddListener<ugdk::input::MouseMotionEvent>(
+			[this](const ugdk::input::MouseMotionEvent& e) {
+				if(ugdk::input::manager()->mouse().IsDown(ugdk::input::MouseButton::LEFT))
+					camera_.translate(e.motion);
+			});
+			
+		scene_->event_handler().AddListener<ugdk::input::MouseWheelEvent>(
+			[this](const ugdk::input::MouseWheelEvent& e) {
+				// gotta make it scroll to the middle
+				if(e.scroll.y == 1)
+					camera_.scale({1.1, 1.1});
+				else
+					camera_.scale({.9, .9});
+			});
 	}
 	
 	Area::~Area() { }

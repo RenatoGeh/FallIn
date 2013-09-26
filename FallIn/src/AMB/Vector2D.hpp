@@ -78,7 +78,8 @@ namespace amb {
 			inline bool inside(T x_, T y_, T w, T h) const { return !(x < x_ || x > x_ + w || y < y_ || y > y_ + h); }
 			inline bool inside(const Vector2D<T>& pos, const Vector2D<T>& size) const { return inside(pos.x, pos.y, size.x, size.y); }
 		public:
-			inline void print(std::ostream& stream) { stream << '[' << x << ", " << y << ']'; }
+			inline std::ostream& print(std::ostream& stream) const { stream << '[' << x << ", " << y << ']'; return stream; }
+			friend inline std::ostream& operator << (std::ostream& st, const Vector2D<T>& v) { return v.print(st); };
 	};
 	
 	template <typename T>
