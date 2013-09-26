@@ -13,11 +13,12 @@ add_executable (FallIn
 	src/AMB/TileMap.cpp
 	src/AMB/Area.cpp
 	src/AMB/Vector2D.cpp
-        src/AMB/Camera.cpp
-        src/AMB/Actor.cpp
-        src/AMB/Player.cpp
-		  src/AMB/NPC.cpp
-		  src/AMB/Wanderer.cpp
-		  src/AMB/AwesomeTimer.cpp
+	src/AMB/Camera.cpp
+	src/AMB/Actor.cpp
+	src/AMB/Player.cpp
+	src/AMB/NPC.cpp
+	src/AMB/Wanderer.cpp
+	src/AMB/AwesomeTimer.cpp
+	src/AMB/Math.cpp
 )
 target_link_libraries(FallIn libugdk)

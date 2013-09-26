@@ -13,15 +13,17 @@ namespace amb {
 		for(auto timer : timers_) {
 			AwesomeAction& t = *timer;
 			t.timeElapsed_ += dt;
-			if(t.timeElapsed_ >= t.timeToCall_) {
+			if(t.timeElapsed_ >= t.timeToCall) {
 				t.function_(timer);
 				if(t.repeats_)
-					t.timeElapsed_ -= t.timeToCall_;
+					t.timeElapsed_ -= t.timeToCall;
+				else
+					t.delete_ = true;
 			}
 		}
 		
 		timers_.remove_if([](AwesomeAction *a) {
-			if(a->delete_ || (!a->repeats_ && a->timeElapsed_ >= a->timeToCall_)) {
+			if(a->delete_) {
 				delete a;
 				return true;
 			}

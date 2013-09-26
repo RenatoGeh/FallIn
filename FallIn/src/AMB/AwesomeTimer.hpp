@@ -8,15 +8,16 @@ namespace amb {
 	class AwesomeAction {
 		public:
 			typedef std::function<void(AwesomeAction*)> AwesomeFunction;
-			AwesomeAction(AwesomeFunction f, double time, bool repeats = false, bool running = true) : function_(f), timeToCall_(time),
+			AwesomeAction(AwesomeFunction f, double time, bool repeats = false, bool running = true) : function_(f), timeToCall(time),
 						timeElapsed_(0.), repeats_(repeats), running_(running), delete_(false) {}
 			
 			void toggleRunning() { running_ = !running_; }
 			bool running() { return running_; }
 			void remove() { delete_ = true; }
+			double timeToCall;
 		private:
 			AwesomeFunction function_;
-			double timeToCall_, timeElapsed_;
+			double timeElapsed_;
 			bool repeats_, running_, delete_;
 			
 			friend class AwesomeTimer;

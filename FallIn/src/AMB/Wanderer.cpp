@@ -1,5 +1,6 @@
 #include "Wanderer.hpp"
 #include "AwesomeTimer.hpp"
+#include "Math.hpp"
 
 
 namespace amb {
@@ -18,8 +19,20 @@ namespace amb {
 	Wanderer::~Wanderer() {}
 	
 	void Wanderer::init() {
-		walkAction_ = new AwesomeAction([this](AwesomeAction*){
-			this->translate(1, 1); // Go to random places once random is implemented.
+		walkAction_ = new AwesomeAction([this](AwesomeAction* ac){
+			if(math::random() < .65) {
+				Tile *oldTile = this->tile();
+				if(math::randomBool())
+					this->translate(0, math::randomSign());
+				else
+					this->translate(math::randomSign(), 0);
+				if(!this->tile()->ocuppied()) {
+					oldTile->occupy(nullptr);
+					this->tile()->occupy(this);
+				} else
+					this->setTile(*oldTile);
+			}
+			ac->timeToCall = 1.0 + math::random();
 		}, 1.5, true);
 		AwesomeTimer::mainTimer.addTimer(walkAction_);
 	}

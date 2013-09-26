@@ -15,6 +15,7 @@
 #include "AMB/NPC.hpp"
 #include "AMB/Wanderer.hpp"
 #include "AMB/AwesomeTimer.hpp"
+#include "AMB/Math.hpp"
 
 #include <iostream>
 
@@ -35,21 +36,22 @@ int main() {
 	namespace system = ugdk::system;
 	init();
 	mainScene = new ugdk::action::Scene;
-	amb::AwesomeTimer::mainTimer.addTimer([](amb::AwesomeAction* a) {
-		static int i = 0;
-		std::cout << "Hey" << std::endl; 
-		if(++i == 3) a->remove();
-	}, 1, true);
 	mainScene->AddTask(update);
 	system::PushScene(mainScene);
 	
+	//TEST TEST TEST
 	
 	amb::Area area(16, 11, "resources/tile.png", {10, 10});
 	amb::Player player("Lydia", new amb::DrawableImage("resources/Lydia.png"), &area, {1, 1});
-	amb::Wanderer dat_stache("Pornstache", new amb::DrawableImage("resources/pornstache.png"), &area, {4, 3});
+	amb::DrawableImage *stache = new amb::DrawableImage("resources/pornstache.png");
+	amb::Wanderer datStache("Pornstache", stache, &area, {4, 3});
+	amb::Wanderer secondStache("Pornstache's Dad", stache, &area, {7, 2});
+	amb::Wanderer thirdStache("Pornstache's Mom", stache, &area, {6, 10});
 	
 	area.addBody(&player);
-	area.addBody(&dat_stache);        
+	area.addBody(&datStache);
+	area.addBody(&secondStache);
+	area.addBody(&thirdStache);
 	
 	system::PushScene(area.scene());
 	system::Run();
