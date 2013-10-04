@@ -20,5 +20,8 @@ add_executable (FallIn
 	src/AMB/Wanderer.cpp
 	src/AMB/AwesomeTimer.cpp
 	src/AMB/Math.cpp
+	src/AMB/UI/Menu.cpp
+	src/AMB/UI/Button.cpp
+	src/AMB/UI/MainMenu.cpp
 )
 target_link_libraries(FallIn libugdk)

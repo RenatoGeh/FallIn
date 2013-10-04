@@ -31,7 +31,6 @@ namespace amb {
 		
 		ugdk::action::Scene *scene() { return scene_; }
 		
-		const ugdk::math::Vector2D& position() const { return position_; }
 	private:
 		Camera camera_;
 		
@@ -41,7 +40,7 @@ namespace amb {
 		
 		std::list<Body*> bodies_;
 		TileMap map_;
-		ugdk::math::Vector2D position_;
+		double scale_;
 	};
 }
 #endif	/* AREA_HPP */

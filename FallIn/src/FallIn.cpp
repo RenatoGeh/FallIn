@@ -16,6 +16,7 @@
 #include "AMB/Wanderer.hpp"
 #include "AMB/AwesomeTimer.hpp"
 #include "AMB/Math.hpp"
+#include "AMB/UI/MainMenu.hpp"
 
 #include <iostream>
 
@@ -38,10 +39,11 @@ int main() {
 	mainScene = new ugdk::action::Scene;
 	mainScene->AddTask(update);
 	system::PushScene(mainScene);
+	mainScene->set_focus_callback([](ugdk::action::Scene* ms) { ms->Finish(); }); // Should never be focused
 	
 	//TEST TEST TEST
 	
-	amb::Area area(19, 11, "resources/tile.png", {11, 10});
+	/*amb::Area area(19, 11, "resources/tile.png", {11, 10});
 	amb::Player player("Lydia", new amb::DrawableImage("resources/Lydia.png"), &area, {1, 1});
 	amb::DrawableImage *stache = new amb::DrawableImage("resources/pornstache.png");
 	amb::Wanderer datStache("Pornstache", stache, &area, {4, 3});
@@ -53,7 +55,11 @@ int main() {
 	area.addBody(&secondStache);
 	area.addBody(&thirdStache);
 	
-	system::PushScene(area.scene());
+	system::PushScene(area.scene());*/
+	
+	amb::ui::MainMenu m;
+	m.load();
+	
 	system::Run();
 	system::Release();
 	return 0;

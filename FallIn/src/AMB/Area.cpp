@@ -14,11 +14,11 @@
 
 
 namespace amb {
-	Area::Area(int width, int height, const std::string& st, const ugdk::math::Vector2D& position) : scene_(new ugdk::action::Scene), image_(st), hasFocus_(false), map_(width, height), position_(position) {
+	Area::Area(int width, int height, const std::string& st, const ugdk::math::Vector2D& position) : scene_(new ugdk::action::Scene), image_(st), hasFocus_(false), map_(width, height), scale_(1) {
 		using namespace std::placeholders;
 		camera_.translate(position);
-		scene_->set_focus_callback([&](ugdk::action::Scene*){ hasFocus_ = true; });
-		scene_->set_defocus_callback([&](ugdk::action::Scene*){ hasFocus_ = false; });
+		scene_->set_focus_callback([this](ugdk::action::Scene*){ hasFocus_ = true; });
+		scene_->set_defocus_callback([this](ugdk::action::Scene*){ hasFocus_ = false; });
 		
 		scene_->set_render_function(std::bind(&Area::draw, this, _1, _2));
 		scene_->AddTask(ugdk::system::Task(std::bind(&Area::update, this, _1), .6));
@@ -33,10 +33,14 @@ namespace amb {
 		scene_->event_handler().AddListener<ugdk::input::MouseWheelEvent>(
 			[this](const ugdk::input::MouseWheelEvent& e) {
 				// gotta make it scroll to the middle
-				if(e.scroll.y == 1)
-					camera_.scale({1.1, 1.1});
-				else
-					camera_.scale({.9, .9});
+				double scaleToApply =  1 + e.scroll.y * .1;
+				auto off = camera_.getGeometry().offset();
+				
+				camera_.scale({scaleToApply, scaleToApply});
+				//camera_.translate({1280*(scale_*(1-scaleToApply))/2, 720*(scale_*(1-scaleToApply))/2});
+				camera_.setTranslation({1280*(scale_/2 - scale_*scaleToApply) + off.x, 720*(scale_/2 - scale_*scaleToApply) + off.y});
+				
+				scale_ *= scaleToApply;
 			});
 	}
 	
