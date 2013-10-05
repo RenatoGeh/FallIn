@@ -13,8 +13,8 @@ namespace amb {
 					[this](const ugdk::input::MouseButtonPressedEvent& e) {
 						events::MousePressed event(e);
 							for(Component* c : components_) {
-								if(c->onMousePress && c->contains(event.position))
-									c->onMousePress(event);
+								if(c->contains(event.position))
+									c->onEvent(event);
 							}
 					});
 			
@@ -22,8 +22,8 @@ namespace amb {
 				[this](const ugdk::input::MouseButtonReleasedEvent& e) {
 					events::MouseReleased event(e);
 						for(Component* c : components_) {
-							if(c->onMouseRelease && c->contains(event.position))
-								c->onMouseRelease(event);
+							if(c->contains(event.position))
+								c->onEvent(event);
 						}
 					});
 			

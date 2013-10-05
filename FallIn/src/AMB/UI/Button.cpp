@@ -15,5 +15,8 @@ namespace amb {
 			static amb::DrawableImage image("resources/tile.png", size_); //temp
 			image.draw(geo * Geometry(position_), eff);
 		}
+		
+		void Button::onEvent(const events::MousePressed& e) { onMousePress(e); }
+		void Button::onEvent(const events::MouseReleased& e) { onMouseRelease(e); }
 	}
 }

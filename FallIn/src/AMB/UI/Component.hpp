@@ -11,8 +11,8 @@ namespace amb {
 	namespace ui {
 		class Component {
 			public:
-				std::function<void(const events::MousePressed&)> onMousePress;
-				std::function<void(const events::MouseReleased&)> onMouseRelease;
+				virtual void onEvent(const events::MousePressed&) {}
+				virtual void onEvent(const events::MouseReleased&) {}
 				
 				virtual void draw(const ugdk::graphic::Geometry&, const ugdk::graphic::VisualEffect&) const = 0;
 				
