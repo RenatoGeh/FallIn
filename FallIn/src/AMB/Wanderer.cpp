@@ -4,13 +4,13 @@
 
 
 namespace amb {
-	Wanderer::Wanderer(const std::string& name, DrawableImage* img, Area* area, Tile* tile) :
+	Wanderer::Wanderer(const std::string& name, const std::string& img, Area* area, Tile* tile) :
 		NPC(name, img, area, tile), walkAction_(nullptr) {
 		tile_->occupy(this);
 		init();
 	}
 	
-	Wanderer::Wanderer(const std::string& name, DrawableImage* img, Area* area, const Point2D<int>& pos) :
+	Wanderer::Wanderer(const std::string& name, const std::string& img, Area* area, const Point2D<int>& pos) :
 		NPC(name, img, area, pos), walkAction_(nullptr) {
 		tile_->occupy(this);
 		init();

@@ -9,14 +9,13 @@
 namespace amb {
 	class Actor : public Body {
 		public:
-			Actor(const std::string&, DrawableImage*, Area* = nullptr, Tile* = nullptr);
-			Actor(const std::string&, DrawableImage*, Area*, const Point2D<int>& = Point2D<int>());
+			Actor(const std::string&, const std::string&, Area* = nullptr, Tile* = nullptr);
+			Actor(const std::string&, const std::string&, Area*, const Point2D<int>& = Point2D<int>());
 			virtual ~Actor(void);
 		protected:
-			DrawableImage* image_;
+			DrawableImage image_;
 			std::string name_;
 		public:
-			virtual const ugdk::math::Vector2D& size() const;
 			virtual void draw(const ugdk::graphic::Geometry&, const ugdk::graphic::VisualEffect&) const;
 	};
 }

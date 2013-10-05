@@ -16,10 +16,10 @@ namespace {
 }
 
 namespace amb {
-    Player::Player(const std::string& name, DrawableImage* img, Area *area, Tile *t) : 
+    Player::Player(const std::string& name, const std::string& img, Area *area, Tile *t) : 
 		Actor(name, img, area, t) {init();}
 	 
-	 Player::Player(const std::string& name, DrawableImage *img, Area *area, const Point2D<int>& t) : 
+	 Player::Player(const std::string& name, const std::string& img, Area *area, const Point2D<int>& t) : 
 		Actor(name, img, area, t) {init();}
     Player::~Player() {}
     

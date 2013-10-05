@@ -8,8 +8,8 @@
 namespace amb {
 	class Wanderer : public NPC {
 	public:
-		Wanderer(const std::string&, DrawableImage*, Area* = nullptr, Tile* = nullptr);
-		Wanderer(const std::string&, DrawableImage*, Area* = nullptr, const Point2D<int>& = Point2D<int>());
+		Wanderer(const std::string&, const std::string&, Area* = nullptr, Tile* = nullptr);
+		Wanderer(const std::string&, const std::string&, Area* = nullptr, const Point2D<int>& = Point2D<int>());
 		virtual ~Wanderer(void);
 	private:
 		Wanderer(const Wanderer& orig);

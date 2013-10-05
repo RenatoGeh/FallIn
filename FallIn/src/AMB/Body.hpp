@@ -15,7 +15,6 @@ namespace amb {
             virtual ~Body() {}
 
             virtual void update(double dt) = 0;
-            virtual const ugdk::math::Vector2D& size() const = 0;
             virtual void draw(const ugdk::graphic::Geometry& geo, const ugdk::graphic::VisualEffect& eff) const {}
 
             virtual void onDelete() {}

@@ -44,18 +44,17 @@ int main() {
 	//TEST TEST TEST
 	
 	/*amb::Area area(19, 11, "resources/tile.png", {11, 10});
-	amb::Player player("Lydia", new amb::DrawableImage("resources/Lydia.png"), &area, {1, 1});
-	amb::DrawableImage *stache = new amb::DrawableImage("resources/pornstache.png");
-	amb::Wanderer datStache("Pornstache", stache, &area, {4, 3});
-	amb::Wanderer secondStache("Pornstache's Dad", stache, &area, {7, 2});
-	amb::Wanderer thirdStache("Pornstache's Mom", stache, &area, {6, 10});
+	amb::Player player("Lydia", "resources/Lydia.png", &area, {1, 1});
+	amb::Wanderer datStache("Pornstache", "resources/pornstache.png", &area, {4, 3});
+	amb::Wanderer secondStache("Pornstache's Dad", "resources/pornstache.png", &area, {7, 2});
+	amb::Wanderer thirdStache("Pornstache's Mom", "resources/pornstache.png", &area, {6, 10});
 	
 	area.addBody(&player);
 	area.addBody(&datStache);
 	area.addBody(&secondStache);
 	area.addBody(&thirdStache);
 	
-	system::PushScene(area.scene());*/
+	system::PushScene(area.scene()); */
 	
 	amb::ui::MainMenu m;
 	m.load();

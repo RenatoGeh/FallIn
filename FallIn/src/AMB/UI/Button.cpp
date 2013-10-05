@@ -13,7 +13,7 @@ namespace amb {
 		
 		void Button::draw(const ugdk::graphic::Geometry& geo, const ugdk::graphic::VisualEffect& eff) const {
 			static amb::DrawableImage image("resources/tile.png", size_); //temp
-			image.draw(geo * Geometry(position_), eff);
+			image.draw(geo * ugdk::graphic::Geometry(position_), eff);
 		}
 		
 		void Button::onEvent(const events::MousePressed& e) { onMousePress(e); }
