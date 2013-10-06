@@ -33,6 +33,7 @@ namespace amb {
 				
 				ugdk::action::Scene *scene_;
 				std::list<Component*> components_;
+				Component *focusedComponent_;
 		};
 	}
 }

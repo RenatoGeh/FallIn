@@ -8,6 +8,7 @@
 #include <ugdk/graphic/texture.h>
 
 #include "../AMB.hpp"
+#include "Vector2D.hpp"
 
 namespace amb {
 	class DrawableImage {
@@ -20,7 +21,9 @@ namespace amb {
 		DrawableImage& operator = (const DrawableImage&);
 
 		void draw(const ugdk::graphic::Geometry& geo, const ugdk::graphic::VisualEffect& eff) const { ugdk::graphic::DrawSquare(geo * size_, eff, texture_); }
-
+		
+		Vector2D<int> size() const { return Vector2D<int>(texture_->width(), texture_->height()); }
+		
 		ugdk::graphic::Texture *texture() const { return texture_; };
 		
 	private:

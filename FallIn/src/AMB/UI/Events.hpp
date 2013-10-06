@@ -11,23 +11,39 @@
 namespace amb {
 	namespace ui {
 		namespace events {
-			class MousePressed {
-				public:
+			struct MousePressed {
 					MousePressed(const ugdk::input::MouseButtonPressedEvent& e) : position(ugdk::input::manager()->mouse().position()), button(e.button) {}
 					const Point2D<int> position;
 					const ugdk::input::MouseButton button;
 			};
 			
-			class MouseReleased {
-				public:
+			struct MouseReleased {
 					MouseReleased(const ugdk::input::MouseButtonReleasedEvent& e) : position(ugdk::input::manager()->mouse().position()), button(e.button) {}
 					const Point2D<int> position;
 					const ugdk::input::MouseButton button;
 			};
 			
-			class MouseEntered {};
+			struct MouseEntered {};
 			
-			class MouseExited {};
+			struct MouseExited {};
+			
+			struct FocusGained {};
+			
+			struct FocusLost {};
+			
+			struct KeyPressed {
+				KeyPressed(const ugdk::input::KeyPressedEvent& e) : keyCode(e.keycode), scanCode(e.scancode), modifiers(e.modifiers) {}
+				const ugdk::input::Keycode keyCode;
+				const ugdk::input::Scancode scanCode;
+				const ugdk::input::Keymod modifiers;
+			};
+			
+			struct KeyReleased {
+				KeyReleased(const ugdk::input::KeyReleasedEvent& e) : keyCode(e.keycode), scanCode(e.scancode), modifiers(e.modifiers) {}
+				const ugdk::input::Keycode keyCode;
+				const ugdk::input::Scancode scanCode;
+				const ugdk::input::Keymod modifiers;
+			};
 		}
 	}
 }

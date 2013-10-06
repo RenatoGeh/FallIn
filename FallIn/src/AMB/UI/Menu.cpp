@@ -4,28 +4,35 @@
 
 namespace amb {
 	namespace ui {
-		Menu::Menu() : scene_(nullptr) {}
+		Menu::Menu() : scene_(nullptr), focusedComponent_(nullptr) {}
 		
 		void Menu::prepareScene() {
 			if(!scene_) scene_ = new ugdk::action::Scene;
 			
 			scene_->event_handler().AddListener<ugdk::input::MouseButtonPressedEvent>(
 					[this](const ugdk::input::MouseButtonPressedEvent& e) {
+						static const events::FocusGained focusGained;
+						static const events::FocusLost focusLost;
 						events::MousePressed event(e);
-							for(Component* c : components_) {
-								if(c->contains(event.position))
-									c->onEvent(event);
+						Component *pressed = nullptr;
+						for(Component* c : components_)
+							if(c->contains(event.position)) {
+								pressed = c;
+								c->onEvent(event);
 							}
+						if(pressed != focusedComponent_) {
+							if(focusedComponent_) focusedComponent_->onEvent(focusLost);
+							if(focusedComponent_ = pressed) focusedComponent_->onEvent(focusGained);
+						}
 					});
 			
 			scene_->event_handler().AddListener<ugdk::input::MouseButtonReleasedEvent>(
 				[this](const ugdk::input::MouseButtonReleasedEvent& e) {
 					events::MouseReleased event(e);
-						for(Component* c : components_) {
-							if(c->contains(event.position))
-								c->onEvent(event);
-						}
-					});
+					for(Component* c : components_)
+						if(c->contains(event.position))
+							c->onEvent(event);
+				});
 			
 			scene_->event_handler().AddListener<ugdk::input::MouseMotionEvent>(
 				[this](const ugdk::input::MouseMotionEvent& e) {
@@ -40,6 +47,16 @@ namespace amb {
 								c->onEvent(mouseExited);
 						}
 					}
+				});
+			
+			scene_->event_handler().AddListener<ugdk::input::KeyPressedEvent>(
+				[this](const ugdk::input::KeyPressedEvent& e) {
+					if(focusedComponent_) focusedComponent_->onEvent(events::KeyPressed(e));
+				});
+				
+			scene_->event_handler().AddListener<ugdk::input::KeyReleasedEvent>(
+				[this](const ugdk::input::KeyReleasedEvent& e) {
+					if(focusedComponent_) focusedComponent_->onEvent(events::KeyReleased(e));
 				});
 			
 			scene_->set_render_function([this](const ugdk::graphic::Geometry& geo, const ugdk::graphic::VisualEffect& eff) {

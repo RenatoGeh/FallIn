@@ -9,11 +9,14 @@
 namespace amb {
 	namespace ui {
 		void MainMenu::load() {
-			Button *b = new Button("resources/tile.png", {100, 100}, {100, 100});
+			Button *b = new Button("resources/Lydia.png", {1200, 650});
 			b->onMousePress = [this](const events::MousePressed&) {
 				this->close();
 			};
-			components_.push_back(b);
+			addComponent(b);
+			
+			b = new Button("resources/tile.png", {200, 200});
+			addComponent(b);
 			
 			prepareScene();
 			ugdk::system::PushScene(scene_);

@@ -17,6 +17,10 @@ namespace amb {
 				virtual void onEvent(const events::MouseReleased&) {}
 				virtual void onEvent(const events::MouseEntered&)  {}
 				virtual void onEvent(const events::MouseExited&)   {}
+				virtual void onEvent(const events::FocusGained&)   {}
+				virtual void onEvent(const events::FocusLost&)     {}
+				virtual void onEvent(const events::KeyPressed&)    {}
+				virtual void onEvent(const events::KeyReleased&)   {}
 				
 				void draw(const ugdk::graphic::Geometry& geo, const ugdk::graphic::VisualEffect& eff) const { image_.draw(geo * ugdk::graphic::Geometry(position_), eff); }; //may make it virtual in the future
 				
@@ -27,13 +31,14 @@ namespace amb {
 				
 				virtual ~Component() {}
 			protected:
-				Component(const std::string& imgName, const Point2D<int>& pos, const Vector2D<int>& size) : position_(pos), size_(size), currentMenu_(nullptr), image_(imgName, size_), isMouseHovering_(false) {}
+				Component(const std::string& imgName, const Point2D<int>& pos, const Vector2D<int>& size) : position_(pos), image_(imgName, size_), size_(size), currentMenu_(nullptr), isMouseHovering_(false) {}
+				Component(const std::string& imgName, const Point2D<int>& pos) : position_(pos), image_(imgName), size_(image_.size()), currentMenu_(nullptr), isMouseHovering_(false) {}
 				
 				Point2D<int> position_;
-				Vector2D<int> size_;
-				Menu *currentMenu_;
-				
 				DrawableImage image_;
+				Vector2D<int> size_;
+				
+				Menu *currentMenu_;
 			private:
 				bool isMouseHovering_;
 				
