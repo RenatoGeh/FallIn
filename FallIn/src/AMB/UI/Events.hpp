@@ -14,17 +14,20 @@ namespace amb {
 			class MousePressed {
 				public:
 					MousePressed(const ugdk::input::MouseButtonPressedEvent& e) : position(ugdk::input::manager()->mouse().position()), button(e.button) {}
-					Point2D<int> position;
-					ugdk::input::MouseButton button;
+					const Point2D<int> position;
+					const ugdk::input::MouseButton button;
 			};
 			
 			class MouseReleased {
 				public:
 					MouseReleased(const ugdk::input::MouseButtonReleasedEvent& e) : position(ugdk::input::manager()->mouse().position()), button(e.button) {}
-					Point2D<int> position;
-					ugdk::input::MouseButton button;
+					const Point2D<int> position;
+					const ugdk::input::MouseButton button;
 			};
 			
+			class MouseEntered {};
+			
+			class MouseExited {};
 		}
 	}
 }

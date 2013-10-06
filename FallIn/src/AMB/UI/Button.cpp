@@ -2,21 +2,15 @@
 
 #include <iostream>
 
-#include "../DrawableImage.hpp"
-
-
 namespace amb {
 	namespace ui {
-		Button::Button(const Point2D<int>& pos, const Vector2D<int>& size) : Component(pos, size) {
+		Button::Button(const std::string& imgName, const Point2D<int>& pos, const Vector2D<int>& size) : Component(imgName, pos, size) {
 			
-		}
-		
-		void Button::draw(const ugdk::graphic::Geometry& geo, const ugdk::graphic::VisualEffect& eff) const {
-			static amb::DrawableImage image("resources/tile.png", size_); //temp
-			image.draw(geo * ugdk::graphic::Geometry(position_), eff);
 		}
 		
 		void Button::onEvent(const events::MousePressed& e) { onMousePress(e); }
 		void Button::onEvent(const events::MouseReleased& e) { onMouseRelease(e); }
+		void Button::onEvent(const events::MouseEntered&) { std::cout << "hovering " << this << std::endl; }
+		void Button::onEvent(const events::MouseExited&) { std::cout << "not-hovering " << this << std::endl; }
 	}
 }
