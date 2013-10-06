@@ -2,9 +2,12 @@
 #define	MENU_HPP
 
 #include <list>
+#include <memory>
 #include <ugdk/action/scene.h>
+#include <ugdk/math/vector2D.h>
 
 #include "Component.hpp"
+#include "../DrawableImage.hpp"
 
 namespace amb {
 	namespace ui {
@@ -34,6 +37,8 @@ namespace amb {
 				ugdk::action::Scene *scene_;
 				std::list<Component*> components_;
 				Component *focusedComponent_;
+				
+				std::unique_ptr<DrawableImage> image_;
 		};
 	}
 }

@@ -2,6 +2,8 @@
 
 #include <iostream>
 #include <ugdk/system/engine.h>
+
+#include "../Math.hpp"
 #include "Button.hpp"
 #include "Component.hpp"
 
@@ -16,7 +18,12 @@ namespace amb {
 			addComponent(b);
 			
 			b = new Button("resources/tile.png", {200, 200});
+			b->onMousePress = [this](const events::MousePressed&) {
+				std::cout << "HEY YOU PRESSED ME DUDE" << std::endl;
+			};
 			addComponent(b);
+			
+			this->image_.reset(new DrawableImage("resources/pornstache.png", {1280, 720}));
 			
 			prepareScene();
 			ugdk::system::PushScene(scene_);

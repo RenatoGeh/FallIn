@@ -4,7 +4,7 @@
 
 namespace amb {
 	namespace ui {
-		Menu::Menu() : scene_(nullptr), focusedComponent_(nullptr) {}
+		Menu::Menu() : scene_(nullptr), focusedComponent_(nullptr), image_(nullptr) {}
 		
 		void Menu::prepareScene() {
 			if(!scene_) scene_ = new ugdk::action::Scene;
@@ -60,6 +60,7 @@ namespace amb {
 				});
 			
 			scene_->set_render_function([this](const ugdk::graphic::Geometry& geo, const ugdk::graphic::VisualEffect& eff) {
+				if(image_) image_->draw(geo, eff);
 				for(Component* c : components_)
 					c->draw(geo, eff);
 				this->draw(geo, eff);
