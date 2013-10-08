@@ -22,6 +22,8 @@ namespace amb {
 				
 				virtual void draw(const ugdk::graphic::Geometry&, const ugdk::graphic::VisualEffect&) const {};
 				
+				inline ugdk::action::Scene *scene() { return scene_; }
+				
 				virtual ~Menu() {}
 			protected:
 				Menu();

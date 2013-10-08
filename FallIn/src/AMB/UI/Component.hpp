@@ -22,7 +22,7 @@ namespace amb {
 				virtual void onEvent(const events::KeyPressed&)    {}
 				virtual void onEvent(const events::KeyReleased&)   {}
 				
-				void draw(const ugdk::graphic::Geometry& geo, const ugdk::graphic::VisualEffect& eff) const { image_.draw(position_, geo, eff); }; //may make it virtual in the future
+				virtual void draw(const ugdk::graphic::Geometry& geo, const ugdk::graphic::VisualEffect& eff) const { image_.draw(position_, geo, eff); }
 				
 				virtual void addedTo(Menu *menu) { currentMenu_ = menu; }
 				virtual void removedFrom(Menu *menu) { currentMenu_ = nullptr; }
@@ -31,7 +31,7 @@ namespace amb {
 				
 				virtual ~Component() {}
 			protected:
-				Component(const std::string& imgName, const Point2D<int>& pos, const Vector2D<int>& size) : position_(pos), image_(imgName, size_), size_(size), currentMenu_(nullptr), isMouseHovering_(false) {}
+				Component(const std::string& imgName, const Point2D<int>& pos, const Vector2D<int>& size) : position_(pos), image_(imgName, size), size_(size), currentMenu_(nullptr), isMouseHovering_(false) {}
 				Component(const std::string& imgName, const Point2D<int>& pos) : position_(pos), image_(imgName), size_(image_.size()), currentMenu_(nullptr), isMouseHovering_(false) {}
 				
 				Point2D<int> position_;

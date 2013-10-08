@@ -43,6 +43,7 @@ namespace amb {
 			inline T mult(const Vector2D<T>& v) const { return x * v.x + y * v.y; }
 		public:
 			inline T& operator [] (int index) { return var[index]; }
+			inline T operator [] (int index) const { return var[index]; }
 			inline Vector2D<T> operator + (const Vector2D<T>& v) const { return Vector2D<T>(x + v.x, y + v.y); }
 			inline Vector2D<T> operator - (const Vector2D<T>& v) const { return Vector2D<T>(x - v.x, y - v.y); }
 			inline T operator * (const Vector2D<T>& v) const { return mult(v); }

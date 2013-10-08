@@ -5,6 +5,7 @@
 
 #include "../Math.hpp"
 #include "Button.hpp"
+#include "Slider.hpp"
 #include "Component.hpp"
 
 
@@ -23,7 +24,10 @@ namespace amb {
 			};
 			addComponent(b);
 			
-			this->image_.reset(new DrawableImage("resources/pornstache.png", {1280, 720}));
+			Component *c = new Slider({400, 400}, 100, 0, 100, 100);
+			addComponent(c);
+			
+			//this->image_.reset(new DrawableImage("resources/pornstache.png", {1280, 720}));
 			
 			prepareScene();
 			ugdk::system::PushScene(scene_);

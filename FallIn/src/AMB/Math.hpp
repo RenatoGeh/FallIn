@@ -18,8 +18,12 @@ namespace amb {
 		
 		double sqrt(double n, double precision = 1e-5);
 		
-		template <typename T>
-		inline T abs(T t) { return t > 0? t : -t; }
+		template <typename Number>
+		inline Number abs(Number n) { return n > 0? n : -n; }
+		
+		template <typename Number>
+		inline Number clamp(Number n, Number lowerBound, Number upperBound) { return n < lowerBound? lowerBound : n > upperBound? upperBound : n; }
+		
 		
 		/* Returns a random number in the range [0,1[ */
 		inline double random() { return distribution(generator); }

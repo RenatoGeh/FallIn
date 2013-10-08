@@ -23,5 +23,6 @@ add_executable (FallIn
 	src/AMB/UI/Menu.cpp
 	src/AMB/UI/Button.cpp
 	src/AMB/UI/MainMenu.cpp
+	src/AMB/UI/Slider.cpp
 )
 target_link_libraries(FallIn libugdk)
