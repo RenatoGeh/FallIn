@@ -17,7 +17,7 @@ namespace amb {
 				
 				virtual void onEvent(const events::MousePressed&);
 				
-				inline int getValue() { return cursorImage_; }
+				inline int getValue() { return currentValue_; }
 				
 			private:
 				int minValue_, maxValue_;
