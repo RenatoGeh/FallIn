@@ -60,7 +60,7 @@ namespace amb {
 				});
 			
 			scene_->set_render_function([this](const ugdk::graphic::Geometry& geo, const ugdk::graphic::VisualEffect& eff) {
-				if(image_) image_->draw(geo, eff);
+				if(image_) image_->draw({0,0}, geo, eff);
 				for(Component* c : components_)
 					c->draw(geo, eff);
 				this->draw(geo, eff);

@@ -3,6 +3,12 @@
 #include <iostream>
 #include <random>
 
+namespace {
+	std::random_device rd;
+	std::default_random_engine generator(rd());
+	std::uniform_real_distribution<double> distribution(0.0, 1.0);
+}
+
 namespace amb {
 	namespace math {
 		
@@ -14,12 +20,6 @@ namespace amb {
 		
 		template <typename T>
 		inline T abs(T t) { return t > 0? t : -t; }
-		
-		namespace {
-			std::random_device rd;
-			std::default_random_engine generator(rd());
-			std::uniform_real_distribution<double> distribution(0.0, 1.0);
-		}
 		
 		/* Returns a random number in the range [0,1[ */
 		inline double random() { return distribution(generator); }

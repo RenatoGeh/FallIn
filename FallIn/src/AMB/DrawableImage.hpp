@@ -20,18 +20,18 @@ namespace amb {
 
 		DrawableImage& operator = (const DrawableImage&);
 
-		void draw(const ugdk::graphic::Geometry& geo, const ugdk::graphic::VisualEffect& eff) const { ugdk::graphic::DrawSquare(geo * size_, eff, texture_); }
+		void draw(const ugdk::math::Vector2D& pos, const ugdk::graphic::Geometry& geo, const ugdk::graphic::VisualEffect& eff) const { ugdk::graphic::DrawSquare(geo * ugdk::graphic::Geometry(pos, size_), eff, texture_); }
 		
-		Vector2D<int> size() const { return Vector2D<int>(texture_->width(), texture_->height()); }
+		ugdk::math::Vector2D& size() { return size_; }
 		
 		ugdk::graphic::Texture *texture() const { return texture_; };
-		
+				
 	private:
 		DrawableImage(ugdk::graphic::Texture*);
 		DrawableImage(ugdk::graphic::Texture*, const ugdk::math::Vector2D&);
 	private:
 		ugdk::graphic::Texture *texture_;
-		ugdk::graphic::Geometry size_;
+		ugdk::math::Vector2D size_;
 	};
 } //namespace amb
 

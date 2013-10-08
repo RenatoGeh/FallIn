@@ -11,7 +11,7 @@ namespace amb {
 
 	Actor::~Actor() {}
 
-	void Actor::draw(const ugdk::graphic::Geometry& geom, const ugdk::graphic::VisualEffect& eff) const {
-		image_.draw(geom * ugdk::graphic::Geometry(tile_->index() * _TileSize), eff);
+	void Actor::draw(const ugdk::graphic::Geometry& geo, const ugdk::graphic::VisualEffect& eff) const {
+		image_.draw(tile_->index() * _TileSize, geo, eff);
 	}
 }

@@ -22,7 +22,7 @@ namespace amb {
 				virtual void onEvent(const events::KeyPressed&)    {}
 				virtual void onEvent(const events::KeyReleased&)   {}
 				
-				void draw(const ugdk::graphic::Geometry& geo, const ugdk::graphic::VisualEffect& eff) const { image_.draw(geo * ugdk::graphic::Geometry(position_), eff); }; //may make it virtual in the future
+				void draw(const ugdk::graphic::Geometry& geo, const ugdk::graphic::VisualEffect& eff) const { image_.draw(position_, geo, eff); }; //may make it virtual in the future
 				
 				virtual void addedTo(Menu *menu) { currentMenu_ = menu; }
 				virtual void removedFrom(Menu *menu) { currentMenu_ = nullptr; }

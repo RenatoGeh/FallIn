@@ -41,7 +41,6 @@ namespace {
 		}
 	}
 	
-	const ugdk::math::Vector2D _VecZero(0,0);
 }
 
 namespace amb {
@@ -51,9 +50,9 @@ namespace amb {
 
 	DrawableImage::DrawableImage(ugdk::graphic::Texture* texture) : DrawableImage(texture, ugdk::math::Vector2D(texture->width(), texture->height())) {}
 
-	DrawableImage::DrawableImage(ugdk::graphic::Texture* texture, const ugdk::math::Vector2D& size) : texture_(texture), size_(_VecZero, size) {}
+	DrawableImage::DrawableImage(ugdk::graphic::Texture* texture, const ugdk::math::Vector2D& size) : texture_(texture), size_(size) {}
 
-   DrawableImage::DrawableImage(const DrawableImage& other) : texture_(addReference(other.texture_)) { size_.Compose(other.size_); }
+   DrawableImage::DrawableImage(const DrawableImage& other) : texture_(addReference(other.texture_)), size_(other.size_) {}
         
 	DrawableImage::~DrawableImage() { removeTextureReference(texture_); }
 

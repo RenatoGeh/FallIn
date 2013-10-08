@@ -16,10 +16,12 @@ namespace amb {
 		init();
 	}
 	
-	Wanderer::~Wanderer() {}
+	Wanderer::~Wanderer() {
+		walkAction_->remove();
+	}
 	
 	void Wanderer::init() {
-		walkAction_ = new AwesomeAction([this](AwesomeAction* ac){
+		walkAction_ = new AwesomeAction([this](AwesomeAction* ac) {
 			if(math::random() < .65) {
 				Tile *oldTile = this->tile();
 				if(math::randomBool())
